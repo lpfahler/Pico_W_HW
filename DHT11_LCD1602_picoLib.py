@@ -73,14 +73,16 @@ tempC = myDHT11.temperature()
 text_H = f'Humidity = {humid}%'
 myLCD.move_to(0,1)
 myLCD.putstr(text_H)
-text_C = f'Temp = {tempC:4.1f}'
+# {chr(0)} suggested by Keith Lohmeyer to simplify the code - works
+text_C = f'Temp = {tempC:4.1f}{chr(0)}C'
 myLCD.move_to(0,0)
 myLCD.putstr(text_C)
-myLCD.move_to(11,0)
+# old code:
+# myLCD.move_to(11,0)
 # add in custom character - degree symbol
-myLCD.putchar(chr(0))
-myLCD.move_to(12,0) 
-myLCD.putstr('C')
+# myLCD.putchar(chr(0))
+# myLCD.move_to(12,0) 
+# myLCD.putstr('C')
 
 try:
     while True:
@@ -96,23 +98,14 @@ try:
             myLCD.putstr(text_H)
 
         if scale_toggle == True:
-            text_C = f'Temp = {tempC:4.1f}'
+            text_C = f'Temp = {tempC:4.1f}{chr(0)}C '
             myLCD.move_to(0,0)
             myLCD.putstr(text_C)
-            myLCD.move_to(11,0)
-            myLCD.putchar(chr(0))
-            myLCD.move_to(12,0)
-            # add extra blank character to erase possible 'F'
-            myLCD.putstr('C ')
         else:
             tempF = (tempC * 1.8) + 32
-            text_F = f'Temp = {tempF:5.1f}'
+            text_F = f'Temp = {tempF:5.1f}{chr(0)}F'
             myLCD.move_to(0,0)
             myLCD.putstr(text_F)
-            myLCD.move_to(12,0)
-            myLCD.putchar(chr(0))
-            myLCD.move_to(13,0)
-            myLCD.putstr('F')
 
 except KeyboardInterrupt:
     myLCD.clear()
