@@ -32,7 +32,7 @@ myOLED.init_display()
 # returns a dictionary of results
 def getWxr(loc='quakertown,pa,us'):
     # get weather information for requested location
-    myURL = f'https://api.openweathermap.org/data/2.5/weather?q={loc}&appid=20622fba82834a841871f445f00d9e78&units=imperial'
+    myURL = f'https://api.openweathermap.org/data/2.5/weather?q={loc}&appid=YOUR_API_KEY_HERE&units=imperial'
     wxr = urequests.get(myURL).json()
     # get date and time info - add in timezone to my local time
     dt = utime.localtime(wxr['dt'] + wxr['timezone'])
