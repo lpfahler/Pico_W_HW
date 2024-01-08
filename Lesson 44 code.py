@@ -14,8 +14,8 @@ i2c = I2C(0, sda=Pin(16), scl=Pin(17), freq=400000)
 mpu = MPU6050(i2c)
 
 # setup I2C bus and OLED display
-i2c=I2C(1, sda = Pin(14), scl = Pin(15), freq = 400000)
-myOLED = SSD1306_I2C(128, 64, i2c, addr = 0x3c)
+i2c2=I2C(1, sda = Pin(14), scl = Pin(15), freq = 400000)
+myOLED = SSD1306_I2C(128, 64, i2c2, addr = 0x3c)
 myOLED.init_display()
 
 # indicator variable for a drop
@@ -38,8 +38,8 @@ while True:
     if drop == True:
         # calculate drop time and distance if drop has occurred
         dropTime = ticks_diff(stopTime, startTime)/1000
-        distance_inches = 0.5 * (32 * 12) * (dropTime**2)
-        distance_cm = 0.5 * 980.66 * (dropTime**2)
+        distance_inches = 0.5 * (32.17405 * 12) * (dropTime**2)
+        distance_cm = 0.5 * 980.665 * (dropTime**2)
         # put results on OLED
         myOLED.fill(0)
         myOLED.text("Drop Distance:", 0, 0)
